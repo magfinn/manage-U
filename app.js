@@ -1,8 +1,9 @@
 //import & require express
 const express = require('express');
-const inquirer = require('inquirer');
 const mysql = require('mysql2');
-const cTable = require('console.table');
+
+// const inquirer = require('inquirer');
+// const cTable = require('console.table');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -12,20 +13,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Connect to database
-const connection = mysql.createConnection(
+const db = mysql.createConnection(
     {
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'employee_db'
+      database: 'workplace'
     },
-    console.log ('Connected to the employee database.')
+    console.log ('Connected to the workplace database.')
 );
-connection.connect(function(err) {
-    if(err) throw err;
-    console.log('connected as id ' + connection.threadId);
-    // beginPrompt();
-});
+// db.connect(function(err) {
+//     if(err) throw err;
+//     console.log('connected as id ' + db.threadId);
+//     // beginPrompt();
+// });
 
 //get all employees
 app.get('/api/employees', (req, res) => {
@@ -100,7 +101,19 @@ app.delete('/api/employee/:id', (req, res) => {
 
 //creating a new employee
 app.post('/api/employee', ({body}, res) => {
-    const sql = `INSERT INTO employees(first_name, last_name, manager_id) VALUES(?,?,?)`;
+    const errors = inputCheck(
+        body,
+        'first_name',
+        'last_name',
+        'industry_connected'
+      );
+      if (errors) {
+        res.status(400).json({ error: errors });
+        return;
+    }
+
+    const sql = `INSERT INTO employees(first_name, last_name, manager_id) 
+        VALUES(?,?,?)`;
     const params = [body.first_name, body.last_name, body.manager_id];
 
     db.query(sql, params, (err, result) => {
@@ -113,6 +126,7 @@ app.post('/api/employee', ({body}, res) => {
             data: body
         });
     });
+});
 
 
 // Default response for any other request (Not Found)
