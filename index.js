@@ -29,7 +29,7 @@ function beginPrompt() {
         'Add Department',
       ],
     })
-    .then(function (val) {
+    .then((val) => {
       switch (val.navigation) {
         case 'View All Employees':
           viewAllEmployees();
@@ -67,7 +67,7 @@ function beginPrompt() {
 
 //View all employees
 function viewAllEmployees() {
-  db.query(`SELECT * FROM employees;`, (err, rows) => {
+  db.query('SELECT * FROM employee', (err, rows) => {
     if (err) throw err;
     console.log(`Viewing all Employees`);
     console.table(rows);
@@ -97,12 +97,12 @@ function viewAllDepartments() {
 
 //View employees by manager id
 function viewEmployeesByManager() {
-  sqlCurrentEmployees = `SELECT employees.*, roles.title AS role_title, roles.salary, department_id, departments.name AS department_name
+  let currentEmployees = `SELECT employees.*, roles.title AS role_title, roles.salary, department_id, departments.name AS department_name
   FROM employees
   LEFT JOIN roles ON employees.role_id = roles.id
   LEFT JOIN departments ON roles.departments_id = departments.id;`;
 
-  db.query(sqlCurrentEmployees, (err, rows) => {
+  db.query(currentEmployees, (err, rows) => {
     if (err) throw err;
     console.table('Current Employees', rows);
 
@@ -177,17 +177,17 @@ function viewEmployeesByDepartment() {
 
 //update employee role by employee id
 function updateEmployeeRole() {
-  const sqlCurrentEmployees = `SELECT employees.*, roles.title AS role_title, roles.salary, department_id, departments.name AS department_name
+  const currentEmployees = `SELECT employees.*, roles.title AS role_title, roles.salary, department_id, departments.name AS department_name
   FROM employees
   LEFT JOIN roles ON employees.role_id = roles.id
   LEFT JOIN departments ON roles.departments_id = departments.id;`;
 
-  db.query(sqlCurrentEmployees, (err, rows) => {
+  db.query(currentEmployees, (err, rows) => {
     if (err) throw err;
     console.table('List of all Employees', rows);
   });
 
-  sqlShowRoles = `SELECT roles.*, departments.name AS department_name
+  let sqlShowRoles = `SELECT roles.*, departments.name AS department_name
   FROM roles
   LEFT JOIN departments ON roles.department_id = departments.id;`;
 
@@ -244,12 +244,12 @@ function updateEmployeeRole() {
 
 //update employee manager by manager id
 function updateEmployeeManager() {
-  sqlCurrentEmployees = `SELECT employees.*, roles.title AS role_title, roles.salary, department_id, departments.name AS department_name
+  let currentEmployees = `SELECT employees.*, roles.title AS role_title, roles.salary, department_id, departments.name AS department_name
   FROM employees
   LEFT JOIN roles ON employees.role_id = roles.id
   LEFT JOIN departments ON roles.department_id = departments.id;`;
 
-  db.query(sqlCurrentEmployees, (err, rows) => {
+  db.query(currentEmployees, (err, rows) => {
     if (err) throw err;
     console.table('List of all employees', rows);
 
@@ -301,12 +301,12 @@ function updateEmployeeManager() {
 
 //add employee
 function addEmployee() {
-  sqlCurrentEmployees = `SELECT employees.*, roles.title AS role_title,
+  currentEmployees = `SELECT employees.*, roles.title AS role_title,
     roles.salary, department_id, departments.name AS department_name
     FROM employees
     LEFT JOIN roles ON employees.role_id = roles.id
     LEFT JOIN departments ON roles.department_id = departments.id;`;
-  db.query(sqlCurrentEmployees, (err, rows) => {
+  db.query(currentEmployees, (err, rows) => {
     if (err) throw err;
     console.table('All Current Employees', rows);
   });
