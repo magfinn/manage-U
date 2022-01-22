@@ -1,4 +1,4 @@
-INSERT INTO departments (name)
+INSERT INTO departments (department_name)
 VALUES 
   ("Resource Development"),
   ("Communications"),
@@ -14,10 +14,10 @@ VALUES
   ("Case Manager", 40000, 5),
   ("Controller", 75000, 3);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+INSERT INTO employees (first_name, last_name) 
 VALUES 
-(1, "Gary", "Begary", 2, 1),
-(2, "Beth", "MacBeth", 3, 2),
-(3, "Karen", "Waren", 4, 3),
-(4, "Bobby", "DeLobby", 5, 1),
-(5, "Flav", "Aflav", 2, 5);
+("Gary", "Begary"),
+("Beth", "MacBeth"),
+("Karen", "Waren"),
+("Bobby", "DeLobby"),
+("Flav", "Aflav");
