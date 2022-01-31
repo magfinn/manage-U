@@ -50,7 +50,8 @@ Exit MySQL `quit`
 
 ## MySQL Demo
 
-## <img src="./assets/images/source_db_demo.mov/>
+  https://user-images.githubusercontent.com/89879013/151765412-cdcf9fda-c696-4665-848d-2e356e62051e.mov
+
 
 Once your packages are installed and your database is functioning, start the program by entering in your root directory:
 
@@ -60,7 +61,9 @@ Follow prompts and exit when finished.
 
 ## Program Demo
 
-## <img src="./assets/images/manage_U_demo.mov/>
+
+https://user-images.githubusercontent.com/89879013/151765532-37a3c54d-db77-4f70-b5bc-5f944dbdf649.mov
+
 
 <>
 
