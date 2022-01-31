@@ -1,70 +1,87 @@
-#  12 SQL: Employee Tracker
+<h1 align="center">✨Manage-U CLI Employee Tracker✨</h1>
 
-## Acceptance Criteria
+<p>
+<a href="https://opensource.org/licenses/MIT">
+<img alt = "License MIT" src="https://img.shields.io/badge/license-MIT-success.svg" target="_blank" /></a>
+</p>
 
-1. Start program in command-line
-2. Choices: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-3. view all departments: able showing department names and department ids
-4. view all roles: job title, role id, the department that role belongs to, and the salary for that role
-5. view all employees: employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-6. Add a department: prompted to enter the name of the department and that department is added to the database
-7. Add a role: prompted to enter the name, salary, and department for the role and that role is added to the database
-8. Add an employee: prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-9. update employee role: prompted to select an employee to update and their new role and this information is updated in the database
+## 📜 Description
 
-As the image illustrates, your schema should contain the following three tables:
+> This is a quick and easy to use employee tracking program. Once started, the program allows you to view, add, update and delete employees, departments, managers and roles - all through the CLI! It's a simple, but powerful tool that can make managing a small/medium team fast and effective.
 
-* `department`
+🔗 <a href = 'https://www.github.com/magfinn/Manage-U'>Link<a/>
 
-  * `id`: `INT PRIMARY KEY`
+## ✅ Installing / Getting Started
 
-  * `name`: `VARCHAR(30)` to hold department name
+> ### 🧰 Requirements
 
-* `role`
+> This app is run entirely through the CLI using inquirer, mysql2, console.table and express.
 
-  * `id`: `INT PRIMARY KEY`
+You’ll need to use the MySQL2 package to connect to your MySQL database and perform queries, the Inquirer package to interact with the user via the command line, and the console.table package to print MySQL rows to the console.
 
-  * `title`: `VARCHAR(30)` to hold role title
+To get started, clone the repo:
+`git clone git@github.com:magfinn/manage-U.git`
 
-  * `salary`: `DECIMAL` to hold role salary
+Using the node installer package, install packages needed.
+`npm i inquirer mysql2 console.table express`
 
-  * `department_id`: `INT` to hold reference to department role belongs to
+The employee database structure, tables and seed data are saved in 'db'.
 
-* `employee`
+To create the database, log in to mysql: `mysql -u [username] -p`
 
-  * `id`: `INT PRIMARY KEY`
+Enter your password
 
-  * `first_name`: `VARCHAR(30)` to hold employee first name
+Create your database
+`source db/db.sql`
 
-  * `last_name`: `VARCHAR(30)` to hold employee last name
+Create tables for your database
+`source db/schema.sql`
 
-  * `role_id`: `INT` to hold reference to employee role
+Seed your starting data
+`source db/seeds.sql`
 
-  * `manager_id`: `INT` to hold reference to another employee that is the manager of the current employee (`null` if the employee has no manager)
+You can check to make sure everything worked with the MySQL commands:
+`use [db]`
+`show tables`
+`describe [table]`
+`select * from [table]`
 
-You might want to use a separate file that contains functions for performing specific SQL queries you'll need to use. 
+Exit MySQL `quit`
 
-A constructor function or class could be helpful for organizing these.
+## MySQL Demo
 
-You might also want to include a `seeds.sql` file to pre-populate your database, making the development of individual features much easier.
+## <img src="./assets/images/source_db_demo.mov/>
 
+Once your packages are installed and your database is functioning, start the program by entering in your root directory:
 
-## Mock-Up
+`npm start`
 
-The following video shows an example of the application being used from the command line:
+Follow prompts and exit when finished.
 
-[![A video thumbnail shows the command-line employee management application with a play button overlaying the view.](./Assets/12-sql-homework-video-thumbnail.png)](https://2u-20.wistia.com/medias/2lnle7xnpk)
+## Program Demo
 
-## Getting Started
+## <img src="./assets/images/manage_U_demo.mov/>
 
-You’ll need to use the [MySQL2 package](https://www.npmjs.com/package/mysql2) to connect to your MySQL database and perform queries, the [Inquirer package](https://www.npmjs.com/package/inquirer) to interact with the user via the command line, and the [console.table package](https://www.npmjs.com/package/console.table) to print MySQL rows to the console.
+<>
 
-**Important**: You will be committing a file that contains your database credentials. Make sure that your MySQL password is not used for any other personal accounts, because it will be visible on GitHub. In upcoming lessons, you will learn how to better secure this password, or you can start researching npm packages now that could help you.
+## 🚥 Tests
 
-You might also want to make your queries asynchronous. MySQL2 exposes a `.promise()` function on Connections to upgrade an existing non-Promise connection to use Promises. To learn more and make your queries asynchronous, refer to the [npm documentation on MySQL2](https://www.npmjs.com/package/mysql2).
+I tested this app with jest. To install jest, `npm i jest`
 
-Design the database schema as shown in the following image:
+## 🤝 Contributing
 
-![Database schema includes tables labeled “employee,” role,” and “department.”](./Assets/12-sql-homework-demo-01.png)
+## ❓ Questions?
 
+> Have questions or need more information? Contact me by <a href='mailto:magfin@github.com'>e-mail</a>.
 
+**Maggie Finnegan**
+
+- Github: [@magfinn](https://github.com/magfinn)
+
+## 📝 License
+
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
+
+---
+
+\_This README was generated with ❤️ by [Quick, Read Me!](https://github.com/magfinn/Quick-README-)
