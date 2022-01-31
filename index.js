@@ -20,7 +20,7 @@ async function mainMenu() {
       choices: [
         'View all departments',
         'View all roles',
-        'View all employee',
+        'View all employees',
         'View employee by manager',
         'View employee by department',
         'View budget by department',
@@ -44,23 +44,19 @@ async function mainMenu() {
   }
   // view all roles
   if (answers.mainMenu === 'View all roles') {
-    let rolesQuery =
-      'SELECT roles.id, roles.title, department.name AS department, roles.salary FROM roles, department WHERE roles.department_id = department.id ORDER BY 1';
+    let rolesQuery = 'SELECT * FROM roles ORDER BY 1';
     db.query(rolesQuery, function (err, res) {
       if (err) return err;
       console.table(res);
-      // return to main menu
       mainMenu();
     });
   }
   // view all employee
-  if (answers.mainMenu === 'View all employee') {
-    let employeesQuery =
-      "SELECT	employee.id, employee.first_name, employee.last_name, roles.title, department.name AS department,roles.salary, CONCAT (manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN roles ON employee.roles_id = roles.id LEFT JOIN department ON roles.department_id = departments.id LEFT JOIN employee manager ON employee.manager_id = manager.id ORDER BY 1;";
+  if (answers.mainMenu === 'View all employees') {
+    let employeesQuery = 'SELECT	* FROM employees ORDER BY 1;';
     db.query(employeesQuery, function (err, res) {
       if (err) return err;
       console.table(res);
-      // return to main menu
       mainMenu();
     });
   }
